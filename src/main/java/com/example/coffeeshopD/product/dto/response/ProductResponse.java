@@ -1,5 +1,6 @@
 package com.example.coffeeshopD.product.dto.response;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ProductResponse {
@@ -8,13 +9,13 @@ public class ProductResponse {
     private Long price;
     private String description;
     private String origin;
-    private Date expirationDate;
+    private String expirationDate;
     private String producer;
     private String weight;
 
     public ProductResponse(long id, String productName, Long price,
                            String description, String origin,
-                           Date expirationDate,
+                           String expirationDate,
                            String producer, String weight) {
         this.id = id;
         this.productName = productName;
@@ -46,7 +47,7 @@ public class ProductResponse {
         return origin;
     }
 
-    public Date getExpirationDate() { return expirationDate; }
+    public String getExpirationDate() { return expirationDate; }
 
     public String getProducer() {
         return producer;
