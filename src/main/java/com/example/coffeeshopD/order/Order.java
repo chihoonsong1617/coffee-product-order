@@ -9,8 +9,8 @@ public class Order {
     private Product productName;
     private String address;
     private Long deliveryFee;
-    private LocalDateTime deliveryDepartureTime; // 배송 출발 시간
-    private LocalDateTime releaseTime; // 상품 출고 시간
+    private String deliveryDepartureTime; // 배송 출발 시간
+    private String releaseTime; // 상품 출고 시간
     private String orderRequest; // 주문 요청 사항
     private boolean withdrawOrder; // 주문 취소 여부
 
@@ -19,8 +19,8 @@ public class Order {
     }
 
     public Order(Long orderId, Product productName, String address,
-                 Long deliveryFee, LocalDateTime deliveryDepartureTime,
-                 LocalDateTime releaseTime, String orderRequest,
+                 Long deliveryFee, String deliveryDepartureTime,
+                 String releaseTime, String orderRequest,
                  boolean withdrawOrder) {
         this.orderId = orderId;
         this.productName = productName;
@@ -47,11 +47,11 @@ public class Order {
         return deliveryFee;
     }
 
-    public LocalDateTime getDeliveryDepartureTime() {
+    public String getDeliveryDepartureTime() {
         return deliveryDepartureTime;
     }
 
-    public LocalDateTime getReleaseTime() {
+    public String getReleaseTime() {
         return releaseTime;
     }
 
