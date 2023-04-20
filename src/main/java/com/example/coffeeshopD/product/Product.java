@@ -1,5 +1,6 @@
 package com.example.coffeeshopD.product;
 
+import com.example.coffeeshopD.order.Order;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -16,6 +17,9 @@ public class Product {
     @Column(nullable = false, name = "expirationDate")
     private String expirationDate;          // 유통기한
 
+    @Column(nullable = false, name = "order")
+    @OneToOne(mappedBy = "product")
+    private Order order;                     // 주문
     @Column(nullable = false, name = "origin")
     private String origin;                     // 원산지
 

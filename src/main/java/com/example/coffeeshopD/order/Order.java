@@ -1,62 +1,73 @@
 package com.example.coffeeshopD.order;
 
 import com.example.coffeeshopD.product.Product;
+import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 
+@Entity
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
-    private Product productName;
+    @Column(nullable = false, name = "address")
     private String address;
-    private Long deliveryFee;
+    @Column(nullable = false, name = "deliverayDepartureTime")
     private String deliveryDepartureTime; // 배송 출발 시간
-    private String releaseTime; // 상품 출고 시간
+    @Column(nullable = false, name = "deliveryFee")
+    private Long deliveryFee;
+    @Column(nullable = false, name = "orderRequest")
     private String orderRequest; // 주문 요청 사항
+    @Column(nullable = false, name = "product")
+    @OneToOne
+    private Product product;
+    @Column(nullable = false, name = "releaseTime")
+    private String releaseTime; // 상품 출고 시간
+    @Column(nullable = false, name = "withdrawOrder")
     private boolean withdrawOrder; // 주문 취소 여부
 
     protected Order() {
 
     }
 
-    public Order(Long orderId, Product productName, String address,
-                 Long deliveryFee, String deliveryDepartureTime,
-                 String releaseTime, String orderRequest,
-                 boolean withdrawOrder) {
+    public Order(Long orderId, String address, String deliveryDepartureTime,
+                 Long deliveryFee, String orderRequest, Product product,
+                 String releaseTime, boolean withdrawOrder) {
         this.orderId = orderId;
-        this.productName = productName;
         this.address = address;
-        this.deliveryFee = deliveryFee;
         this.deliveryDepartureTime = deliveryDepartureTime;
-        this.releaseTime = releaseTime;
+        this.deliveryFee = deliveryFee;
         this.orderRequest = orderRequest;
+        this.product = product;
+        this.releaseTime = releaseTime;
         this.withdrawOrder = withdrawOrder;
     }
+
     public Long getOrderId() {
         return orderId;
-    }
-
-    public Product getProductName() {
-        return productName;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public Long getDeliveryFee() {
-        return deliveryFee;
-    }
-
     public String getDeliveryDepartureTime() {
         return deliveryDepartureTime;
     }
 
-    public String getReleaseTime() {
-        return releaseTime;
+    public Long getDeliveryFee() {
+        return deliveryFee;
     }
 
     public String getOrderRequest() {
         return orderRequest;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public String getReleaseTime() {
+        return releaseTime;
     }
 
     public boolean isWithdrawOrder() {
