@@ -18,7 +18,7 @@ public class Product {
     private String expirationDate;          // 유통기한
 
     @Column(nullable = false, name = "order")
-    @OneToOne(mappedBy = "product")
+    @ManyToOne
     private Order order;                     // 주문
     @Column(nullable = false, name = "origin")
     private String origin;                     // 원산지

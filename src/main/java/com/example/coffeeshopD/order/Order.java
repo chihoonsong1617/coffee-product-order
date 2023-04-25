@@ -3,6 +3,8 @@ package com.example.coffeeshopD.order;
 import com.example.coffeeshopD.product.Product;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+
 
 @Entity
 public class Order {
@@ -18,8 +20,8 @@ public class Order {
     @Column(nullable = false, name = "orderRequest")
     private String orderRequest; // 주문 요청 사항
     @Column(nullable = false, name = "product")
-    @OneToOne
-    private Product product;
+    @OneToMany(mappedBy = "order")   // 주문 하나당 여러개의 product를 가지게 된다.
+    private ArrayList<Product> product;
     @Column(nullable = false, name = "releaseTime")
     private String releaseTime; // 상품 출고 시간
     @Column(nullable = false, name = "withdrawOrder")
@@ -29,10 +31,9 @@ public class Order {
 
     }
 
-    public Order(Long orderId, String address, String deliveryDepartureTime,
-                 Long deliveryFee, String orderRequest, Product product,
+    public Order(String address, String deliveryDepartureTime,
+                 Long deliveryFee, String orderRequest, ArrayList<Product> product,
                  String releaseTime, boolean withdrawOrder) {
-        this.orderId = orderId;
         this.address = address;
         this.deliveryDepartureTime = deliveryDepartureTime;
         this.deliveryFee = deliveryFee;
@@ -62,7 +63,7 @@ public class Order {
         return orderRequest;
     }
 
-    public Product getProduct() {
+    public ArrayList<Product> getProduct() {
         return product;
     }
 
